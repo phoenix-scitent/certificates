@@ -1,0 +1,13 @@
+Survey:
+  Question:
+    id: 1
+    order: 1
+    type: select
+    text: What is your profession?
+    answers: ["Doctor", "Nurse", "EMT"]
+
+  Question:
+    id: 2
+    order: 2
+    type: text
+    text: How old are you?
