@@ -1,5 +1,32 @@
+<style>
+  .hidden { display: none; }
+  abbr[title="required"] { color: red; }
+</style>
+
 <h1>New Response</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', responses_path %>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("label[required='required']").append("<abbr title='required'>*</abbr>");
+
+  $("[data-has-dependents='true']").change(function(){
+    var parentId = $(this).closest('.field').data("id");
+    console.log(parentId);
+    var dependentId = $(this).find(":selected").data("dependent") || $(this).data("dependent");
+    console.log(dependentId);
+    $(".dependent_"+parentId).addClass('hidden');
+    $("div.field[data-id='"+dependentId+"']").removeClass('hidden');
+  });
+
+  // var toggleDependent = function(el) {
+  //   var dependentQuestion = el.find(":selected").data("dependent");
+  //   console.log(dependentQuestion);
+  // }
+});
+
+</script>

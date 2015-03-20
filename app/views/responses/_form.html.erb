@@ -1,7 +1,7 @@
 <%= form_tag('/responses') do |f| %>
 
   <% @questions.each do |question| %>
-    <%= JsonFormBuilder.new(question).render %>
+    <%= JsonQuestionBuilder.new(question).render %>
   <% end %>
 
   <div class="actions">

@@ -15,7 +15,7 @@ class ResponsesController < ApplicationController
   # GET /responses/new
   def new
     survey = JSON.parse(IO.read('public/survey.json'), symbolize_names: true)
-    @questions = survey[:questions].sort! { |a,b| a[:order].to_i <=> b[:order].to_i }   # questions ordered by order number
+    @questions = survey[:questions].sort! { |a,b| a[:order] <=> b[:order] }   # questions ordered by order number
     @options = survey[:options]
   end
 
