@@ -43,7 +43,7 @@ group :development, :test do
   gem 'rb-fsevent'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
-  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
 

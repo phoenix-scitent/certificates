@@ -36,6 +36,8 @@ class SurveysController < ApplicationController
   # POST /surveys
   # POST /surveys.json
   def create
+    binding.pry
+    
     @survey = Survey.new(survey_params)
 
     respond_to do |format|

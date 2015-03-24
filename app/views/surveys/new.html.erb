@@ -1,6 +1,8 @@
 <style>
   .hidden { display: none; }
   abbr[title="required"] { color: red; }
+  label { margin-right: 30px; }
+  .field { margin: 20px auto;}
 </style>
 
 <h1>New Survey</h1>
@@ -15,11 +17,14 @@ $(document).ready(function(){
   $("label[required='required']").append("<abbr title='required'>*</abbr>");
   $("[data-has-dependents='true']").change(function(){
     var parentId = $(this).closest('.field').data("id");
-    console.log(parentId);
     var dependentId = $(this).find(":selected").data("dependent") || $(this).data("dependent");
-    console.log(dependentId);
-    $(".dependent_"+parentId).addClass('hidden');
-    $("div.field[data-id='"+dependentId+"']").removeClass('hidden');
+    // if there is a dependency and checkbox is deselected: hide the dependency
+    if(dependentId && !this.checked){
+      console.log('de-clicked');
+      $(".dependent_"+parentId).addClass('hidden').find('input').prop('disabled', true);
+    }
+    $(".dependent_"+parentId).addClass('hidden').find('input').prop('disabled', true);
+    $("div.field[data-id='"+dependentId+"']").removeClass('hidden').find('input, select').prop('disabled', false);
   });
   // var toggleDependent = function(el) {
   //   var dependentQuestion = el.find(":selected").data("dependent");
