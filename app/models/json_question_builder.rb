@@ -42,15 +42,26 @@ class JsonQuestionBuilder
     html = []
     @question.answers.each do |answer|
       answer_text = answer.is_a?(Hash) ? answer.keys.first.to_s : answer
-      input_options.merge!({:"data-dependent" => answer.values.first}) if answer.is_a?(Hash)
-
-      # This second .merge is not working!!
-
-
+      options = input_options.merge({:"data-dependent" => answer.values.first}) if answer.is_a?(Hash)
       html << label_tag(@question.text + "_" + answer_text, answer_text)
-      html << send(@question.type + "_tag", @question.text, answer_text, false, input_options)
+      html << send(@question.type + "_tag", @question.text, answer_text, false, options)
     end
     html.join("\n")
+  end
+
+  def check_box
+  end
+
+  def date_field
+  end
+
+  def email_field
+  end
+
+  def file_field
+  end
+
+  def number_field_tag
   end
 
   def select
