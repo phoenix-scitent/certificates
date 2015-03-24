@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Claimable uri:</strong>
+  <%= @certificate.claimable_uri %>
+</p>
+
+<p>
+  <strong>Claimable type:</strong>
+  <%= @certificate.claimable_type %>
+</p>
+
+<p>
+  <strong>Template pdf:</strong>
+  <%= @certificate.template_pdf %>
+</p>
+
+<p>
+  <strong>Template background image:</strong>
+  <%= @certificate.template_background_image %>
+</p>
+
+<p>
+  <strong>Certificate type:</strong>
+  <%= @certificate.certificate_type %>
+</p>
+
+<p>
+  <strong>Available credit:</strong>
+  <%= @certificate.available_credit %>
+</p>
+
+<p>
+  <strong>Expiration date:</strong>
+  <%= @certificate.expiration_date %>
+</p>
+
+<%= link_to 'Edit', edit_certificate_path(@certificate) %> |
+<%= link_to 'Back', certificates_path %>

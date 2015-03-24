@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Certificate:</strong>
+  <%= @prerequisite.certificate_id %>
+</p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @prerequisite.survey_id %>
+</p>
+
+<p>
+  <strong>Survey order:</strong>
+  <%= @prerequisite.survey_order %>
+</p>
+
+<%= link_to 'Edit', edit_prerequisite_path(@prerequisite) %> |
+<%= link_to 'Back', prerequisites_path %>

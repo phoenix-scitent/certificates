@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @claim.key %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @claim.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @claim.last_name %>
+</p>
+
+<p>
+  <strong>Product name:</strong>
+  <%= @claim.product_name %>
+</p>
+
+<p>
+  <strong>Certificate url:</strong>
+  <%= @claim.certificate_url %>
+</p>
+
+<p>
+  <strong>Credit type:</strong>
+  <%= @claim.credit_type %>
+</p>
+
+<p>
+  <strong>Claimed credit:</strong>
+  <%= @claim.claimed_credit %>
+</p>
+
+<p>
+  <strong>Survey data:</strong>
+  <%= @claim.survey_data %>
+</p>
+
+<%= link_to 'Edit', edit_claim_path(@claim) %> |
+<%= link_to 'Back', claims_path %>

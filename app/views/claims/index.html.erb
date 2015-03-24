@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Claims</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Product name</th>
+      <th>Certificate url</th>
+      <th>Credit type</th>
+      <th>Claimed credit</th>
+      <th>Survey data</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @claims.each do |claim| %>
+      <tr>
+        <td><%= claim.key %></td>
+        <td><%= claim.first_name %></td>
+        <td><%= claim.last_name %></td>
+        <td><%= claim.product_name %></td>
+        <td><%= claim.certificate_url %></td>
+        <td><%= claim.credit_type %></td>
+        <td><%= claim.claimed_credit %></td>
+        <td><%= claim.survey_data %></td>
+        <td><%= link_to 'Show', claim %></td>
+        <td><%= link_to 'Edit', edit_claim_path(claim) %></td>
+        <td><%= link_to 'Destroy', claim, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Claim', new_claim_path %>

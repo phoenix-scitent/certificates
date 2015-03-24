@@ -11,14 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319155326) do
+ActiveRecord::Schema.define(version: 20150324153335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "responses", force: :cascade do |t|
-    t.string   "user_uri"
-    t.json     "payload"
+  create_table "certificates", force: :cascade do |t|
+    t.string   "claimable_uri"
+    t.string   "claimable_type"
+    t.string   "template_pdf"
+    t.string   "template_background_image"
+    t.string   "certificate_type"
+    t.float    "available_credit"
+    t.string   "eligibility"
+    t.date     "expiration_date"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "claims", force: :cascade do |t|
+    t.string   "key"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "product_name"
+    t.string   "certificate_url"
+    t.string   "credit_type"
+    t.float    "claimed_credit"
+    t.json     "survey_data"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "prerequisites", force: :cascade do |t|
+    t.integer  "certificate_id"
+    t.integer  "survey_id"
+    t.string   "survey_order"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.string   "title"
+    t.json     "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

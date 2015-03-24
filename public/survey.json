@@ -5,12 +5,12 @@
       "order": 3,
       "type": "select",
       "text": "What is your profession?",
-      "answers": [{"Doctor": 1.1}, {"Nurse": 1.2}, {"EMT": 1.3}],
+      "answers": [{"Doctor": 1.5}, {"Nurse": 1.2}, {"EMT": 1.3}],
       "label_options": {"required": true},
       "input_options": {"required": true, "include_blank": true}
     },
     {
-      "id": 1.1,
+      "id": 1.5,
       "order": 3.1,
       "type": "select",
       "text": "How many credits would you like to claim?",

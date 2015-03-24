@@ -1,0 +1,45 @@
+<%= form_for(@certificate) do |f| %>
+  <% if @certificate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@certificate.errors.count, "error") %> prohibited this certificate from being saved:</h2>
+
+      <ul>
+      <% @certificate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :claimable_uri %><br>
+    <%= f.text_field :claimable_uri %>
+  </div>
+  <div class="field">
+    <%= f.label :claimable_type %><br>
+    <%= f.text_field :claimable_type %>
+  </div>
+  <div class="field">
+    <%= f.label :template_pdf %><br>
+    <%= f.text_field :template_pdf %>
+  </div>
+  <div class="field">
+    <%= f.label :template_background_image %><br>
+    <%= f.text_field :template_background_image %>
+  </div>
+  <div class="field">
+    <%= f.label :certificate_type %><br>
+    <%= f.text_field :certificate_type %>
+  </div>
+  <div class="field">
+    <%= f.label :available_credit %><br>
+    <%= f.text_field :available_credit %>
+  </div>
+  <div class="field">
+    <%= f.label :expiration_date %><br>
+    <%= f.date_select :expiration_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

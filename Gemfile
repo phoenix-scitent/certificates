@@ -19,7 +19,8 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+# gem 'jbuilder', '~> 2.0'
+gem 'active_model_serializers' #, github: 'rails-api/active_model_serializers'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -32,10 +33,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'faker'
+gem 'factory_girl_rails'
+
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'guard-rspec'
+  gem 'rb-fsevent'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  gem 'pry-byebug'
+  # gem 'byebug'
+  gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
 
@@ -44,5 +52,13 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :test do
+  gem 'selenium-webdriver', require: false
+  gem 'poltergeist', require: false
+  gem 'capybara'
+  gem 'launchy'
+  gem 'database_cleaner'
 end
 
