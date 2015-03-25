@@ -59,7 +59,10 @@ class JsonQuestionBuilder
 
   def select
     # add value of hash as data-dependent attribute to option
-    answers = has_dependents? ? @question.answers.map{|v| [v.keys.first, v.keys.first, {:"data-dependent" => v.values.first}]} : @question.answers
+    answers = []
+    @question.answers.each do |answer|
+      answers << (answer.is_a?(Hash) ? [answer.keys.first, answer.keys.first, {:"data-dependent" => answer.values.first}] : [answer])
+    end
     send(@question.type + "_tag", @question.text, options_for_select(answers), input_options)
   end
 
