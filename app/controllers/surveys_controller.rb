@@ -23,10 +23,7 @@ class SurveysController < ApplicationController
 
   # GET /surveys/new
   def new
-    # @survey = Survey.new
-    survey = JSON.parse(IO.read('public/survey.json'), symbolize_names: true)
-    @questions = survey[:questions].sort! { |a,b| a[:order] <=> b[:order] }   # questions ordered by order number
-    @options = survey[:options]
+    @survey = Survey.new
   end
 
   # GET /surveys/1/edit
@@ -36,8 +33,6 @@ class SurveysController < ApplicationController
   # POST /surveys
   # POST /surveys.json
   def create
-    binding.pry
-    
     @survey = Survey.new(survey_params)
 
     respond_to do |format|

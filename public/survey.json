@@ -34,18 +34,6 @@
       "label_options": {"required": true}
     },
     {
-      "id": 2,
-      "order": 1,
-      "type": "text_field",
-      "text": "First Name"
-    },
-    {
-      "id": 4,
-      "order": 2,
-      "type": "text_field",
-      "text": "Last Name"
-    },
-    {
       "id": 3,
       "order": 4,
       "type": "radio_button",
@@ -75,7 +63,8 @@
       "id": 6,
       "order": 6,
       "type": "check_box",
-      "text": "Why did you take this course?  Check all that apply.",
+      "text": "Why did you take this course?",
+      "hint": "Check all that apply.",
       "answers": [{"I needed the credit": 6.2}, "I'm interested in the content", {"I was bored": 6.1}]
     },
     {

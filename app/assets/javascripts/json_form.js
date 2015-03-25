@@ -25,7 +25,7 @@ $(document).ready(function(){
   }
 
 
-  $("label[required='required']").append("<abbr title='required'>*</abbr>");
+  $("label[required='required']").append("<abbr title='required'> *</abbr>");
   $("[data-has-dependents='true']").on('change', toggleDependent);
  
 });

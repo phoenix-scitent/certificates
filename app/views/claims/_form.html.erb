@@ -10,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :key %><br>
-    <%= f.text_field :key %>
-  </div>
   <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
@@ -23,26 +18,12 @@
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
   </div>
-  <div class="field">
-    <%= f.label :product_name %><br>
-    <%= f.text_field :product_name %>
-  </div>
-  <div class="field">
-    <%= f.label :certificate_url %><br>
-    <%= f.text_field :certificate_url %>
-  </div>
-  <div class="field">
-    <%= f.label :credit_type %><br>
-    <%= f.text_field :credit_type %>
-  </div>
-  <div class="field">
-    <%= f.label :claimed_credit %><br>
-    <%= f.text_field :claimed_credit %>
-  </div>
-  <div class="field">
-    <%= f.label :survey_data %><br>
-    <%= f.text_field :survey_data %>
-  </div>
+  <%= f.fields_for :survey_data do |sd| %>
+    <% @questions.each do |question| %>
+      <%= JsonQuestionBuilder.new(question, sd).render %>
+    <% end %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

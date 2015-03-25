@@ -15,6 +15,10 @@ class ClaimsController < ApplicationController
   # GET /claims/new
   def new
     @claim = Claim.new
+
+    survey = JSON.parse(IO.read('public/survey.json'), symbolize_names: true)
+    @questions = survey[:questions].sort! { |a,b| a[:order] <=> b[:order] }   # questions ordered by order number
+    @options = survey[:options]
   end
 
   # GET /claims/1/edit
@@ -24,6 +28,8 @@ class ClaimsController < ApplicationController
   # POST /claims
   # POST /claims.json
   def create
+    binding.pry
+
     @claim = Claim.new(claim_params)
 
     respond_to do |format|
@@ -69,6 +75,6 @@ class ClaimsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def claim_params
-      params.require(:claim).permit(:key, :first_name, :last_name, :product_name, :certificate_url, :credit_type, :claimed_credit, :survey_data)
+      params.require(:claim).permit(:key, :first_name, :last_name, :product_name, :certificate_url, :credit_type, :claimed_credit).tap{|w| w[:survey_data] = params[:claim][:survey_data]}
     end
 end

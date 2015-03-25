@@ -1,0 +1,10 @@
+<%= form_for @claim do |f| %>
+  
+  <% @questions.each do |question| %>
+    <%= JsonQuestionBuilder.new(question).render %>
+  <% end %>
+
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
