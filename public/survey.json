@@ -6,8 +6,8 @@
       "type": "select",
       "text": "What is your profession?",
       "answers": [{"Doctor": 1.1}, "Nurse", {"EMT": 1.3}],
-      "label_options": {"required": true},
-      "input_options": {"required": true, "include_blank": true}
+      "required": true,
+      "options": {"prompt": "Please select a profession"}
     },
     {
       "id": 1.1,
@@ -15,7 +15,7 @@
       "type": "select",
       "text": "How many credits would you like to claim?",
       "answers": [1,2,3],
-      "label_options": {"required": true}
+      "required": true
     },
     {
       "id": 1.2,
@@ -23,7 +23,7 @@
       "type": "select",
       "text": "How many credits would you like to claim?",
       "answers": [3,4,5],
-      "label_options": {"required": true}
+      "required": true
     },
     {
       "id": 1.3,
@@ -31,7 +31,7 @@
       "type": "select",
       "text": "How many credits would you like to claim?",
       "answers": [6,7,8],
-      "label_options": {"required": true}
+      "required": true
     },
     {
       "id": 3,
@@ -44,13 +44,15 @@
       "id": 3.1,
       "order": 4.1,
       "type": "text_field",
-      "text": "How much do you weigh?"
+      "text": "How much do you weigh?",
+      "options": {"placeholder": "in lbs"}
     },
     {
       "id": 3.2,
       "order": 4.1,
       "type": "text_field",
-      "text": "How tall are you?"
+      "text": "How tall are you?",
+      "options": {"placeholder": "in feet/inches"}
     },
     {
       "id": 5,
@@ -64,8 +66,8 @@
       "order": 6,
       "type": "check_box",
       "text": "Why did you take this course?",
-      "hint": "Check all that apply.",
-      "answers": [{"I needed the credit": 6.2}, "I'm interested in the content", {"I was bored": 6.1}]
+      "answers": [{"I needed the credit": 6.2}, "I'm interested in the content", {"I was bored": 6.1}],
+      "hint": "Check all that apply."
     },
     {
       "id": 6.1,

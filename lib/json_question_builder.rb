@@ -3,15 +3,20 @@ class JsonQuestionBuilder
   include ActionView::Helpers::FormOptionsHelper
   require 'ostruct'
 
-  # Requirements:
-  #   accept label and input html options
-  #   accept array of strings and hashes for answers 
+  # Required inputs:
+  #   "id":       int / float(dependent - hidden by default)
+  #   "order":    int / float(dependent - hidden by default)
+  #   "type":     text
+  #   "text":     text
+  #   "answers":  [array] / [{"text": dependency.id}, {"text": dependency.id}]
+  # Allowed inputs:
+  #   "required": boolean
+  #   "hint":     text
+  #   "options":  {"placeholder", "include_blank", "maxlength", "prompt", "size"}     as per standard rails form options
 
   def initialize(question, form_object)
     @question = OpenStruct.new(question)
     @form_object ||= form_object
-    @input_options ||= input_options
-    @label_options ||= @question.label_options || {}
   end
 
   def render
@@ -22,10 +27,25 @@ class JsonQuestionBuilder
 
   private
 
+  def hint
+    @question.hint ? ("<span class='json-question-hint'>"+@question.hint+"</span>") : ""
+  end
+
+  def label_options
+    {required: @question.required || false}
+  end
+
+  def options
+    @options = (@question.options || {})
+    @options.merge!(label_options)
+    @options.merge!({:"data-has-dependents" => true}) if has_dependents?
+    @options.merge!({disabled: true}) if hidden?
+    @options
+  end
+
   def label_and_input
     html = []
-    hint = (@question.hint.present? ? ("<span class='json-question-hint'>"+@question.hint+"</span>") : "")
-    html << @form_object.label(@question.text, @label_options) + (hint + "<br />").html_safe
+    html << @form_object.label(@question.text, label_options) + (hint + "<br />").html_safe
     html << send(@question.type)
     html.join("\n")
   end
@@ -38,13 +58,6 @@ class JsonQuestionBuilder
     @question.answers && @question.answers.any?{|a| a.is_a? Hash}
   end
 
-  def input_options
-    options = @question.input_options || {}
-    options.merge!({:"data-has-dependents" => true}) if has_dependents?
-    options.merge!({disabled: true}) if hidden?
-    options
-  end
-
   def collection_tag(multiple=false)
     # radio_button_tag(name, value, checked = false, options = {})
     # check_box_tag(name, value = "1", checked = false, options = {})
@@ -52,10 +65,10 @@ class JsonQuestionBuilder
     html = []
     @question.answers.each do |answer|
       answer_text = answer.is_a?(Hash) ? answer.keys.first.to_s : answer.to_s
-      options = @input_options.merge({id: sanitize_to_id(scope_text+answer_text.downcase)})
-      options.merge!({:"data-dependent" => answer.values.first}) if answer.is_a?(Hash)
+      opts = options.merge({id: sanitize_to_id(scope_text+answer_text.downcase)})
+      opts.merge!({:"data-dependent" => answer.values.first}) if answer.is_a?(Hash)
 
-      html << send(@question.type + "_tag", (multiple ? scope_text+'[]' : scope_text), answer_text, false, options)
+      html << send(@question.type + "_tag", (multiple ? scope_text+'[]' : scope_text), answer_text, false, opts)
       html << label_tag(sanitize_to_id(scope_text+answer_text.downcase), answer_text)
     end
     html.join("\n")
@@ -71,12 +84,12 @@ class JsonQuestionBuilder
 
   def select
     answers = @question.answers.map{|a| (a.is_a?(Hash) ? [a.keys.first, a.keys.first, {:"data-dependent" => a.values.first}] : [a])}
-    @form_object.send(@question.type, @question.text, answers, {}, @input_options)
+    @form_object.send(@question.type, @question.text, answers, options, options)
     # send(@question.type + "_tag", scope_text, options_for_select(answers), input_options)
   end
 
   def text_field
-    @form_object.send(@question.type, @question.text, @input_options)
+    @form_object.send(@question.type, @question.text, options)
   end
 
   def date_field

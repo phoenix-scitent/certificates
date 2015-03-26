@@ -11,13 +11,11 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.label :first_name, "Name" %><span class="json-question-hint">As you would like it to appear on your certificate.</span></br>
+    <%= f.text_field :first_name, placeholder: "First" %>
+    <%= f.text_field :first_name, placeholder: "Last" %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
+  
   <%= f.fields_for :survey_data do |sd| %>
     <% @questions.each do |question| %>
       <%= JsonQuestionBuilder.new(question, sd).render %>
